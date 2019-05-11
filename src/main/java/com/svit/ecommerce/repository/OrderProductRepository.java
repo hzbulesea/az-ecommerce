@@ -10,4 +10,5 @@ import org.springframework.data.repository.CrudRepository;
 //This is the repository interface, this will be automatically implemented by Spring in a 
 //bean with the same name with changing case The bean name will be orderProductRepository
 public interface OrderProductRepository extends CrudRepository<OrderProduct, OrderProductPK> {
+	
 }
