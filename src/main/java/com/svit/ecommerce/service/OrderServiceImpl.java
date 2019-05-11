@@ -1,10 +1,10 @@
 package com.svit.ecommerce.service;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.svit.ecommerce.model.Order;
 import com.svit.ecommerce.repository.OrderRepository;
+import java.time.LocalDate;
 
 @Service
 @Transactional
@@ -14,19 +14,20 @@ public class OrderServiceImpl implements OrderService {
 			this.orderRepository = orderRepository;
 	}
 	
-	@Override
-	public Order create(Order order){
-		return this.orderRepository.save(order);
-	}
+    @Override
+    public Order create(Order order) {
+        order.setDateCreated(LocalDate.now());
+
+        return this.orderRepository.save(order);
+    }
 	
-	@Override
-	public void update(Order order) {
-		
-	}
+    @Override
+    public void update(Order order) {
+        this.orderRepository.save(order);
+    }
 	
-	@Override
-	public Iterable<Order> getAllOrders(){
-		return orderRepository.findAll();
-		
-	}
+    @Override
+    public Iterable<Order> getAllOrders() {
+        return this.orderRepository.findAll();
+    }
 }
